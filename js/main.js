@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     // Update current user session
                     currentUser = usersDB[userIndex];
-                    sessionStorage.setItem('aab_currentUser', JSON.stringify(currentUser));
+                    localStorage.setItem('aab_currentUser', JSON.stringify(currentUser));
                     
                     // Show completion message
                     alert('Your VIP cycle of 60 days has been completed successfully!');
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Update current user session
                 currentUser = usersDB[userIndex];
-                sessionStorage.setItem('aab_currentUser', JSON.stringify(currentUser));
+                localStorage.setItem('aab_currentUser', JSON.stringify(currentUser));
                 
                 // Update UI if on index page
                 if (document.getElementById('user-balance')) {

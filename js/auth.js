@@ -10,9 +10,9 @@ if (!localStorage.getItem('aab_admin')) {
     localStorage.setItem('aab_admin', JSON.stringify(adminDB));
 }
 
-// Current user session
-let currentUser = JSON.parse(sessionStorage.getItem('aab_currentUser'));
-let currentAdmin = JSON.parse(sessionStorage.getItem('aab_currentAdmin'));
+// Current user session - changed to localStorage
+let currentUser = JSON.parse(localStorage.getItem('aab_currentUser'));
+let currentAdmin = JSON.parse(localStorage.getItem('aab_currentAdmin'));
 
 // Check if user is logged in on page load
 document.addEventListener('DOMContentLoaded', function() {
@@ -50,7 +50,7 @@ if (document.getElementById('login-form')) {
             // Admin login
             const admin = adminDB.find(a => a.email === email && a.password === password);
             if (admin) {
-                sessionStorage.setItem('aab_currentAdmin', JSON.stringify(admin));
+                localStorage.setItem('aab_currentAdmin', JSON.stringify(admin)); // Changed to localStorage
                 window.location.href = 'admin.html';
             } else {
                 alert('Invalid admin credentials');
@@ -78,7 +78,7 @@ if (document.getElementById('login-form')) {
                     }
                 }
                 
-                sessionStorage.setItem('aab_currentUser', JSON.stringify(user));
+                localStorage.setItem('aab_currentUser', JSON.stringify(user)); // Changed to localStorage
                 window.location.href = 'index.html';
             } else {
                 alert('Invalid email or password');
@@ -87,7 +87,7 @@ if (document.getElementById('login-form')) {
     });
 }
 
-// Signup Form
+// Signup Form - no changes needed except for localStorage for current user
 if (document.getElementById('signup-form')) {
     document.getElementById('signup-form').addEventListener('submit', function(e) {
         e.preventDefault();
@@ -146,26 +146,25 @@ if (document.getElementById('signup-form')) {
         };
         
         // Process invitation if code is provided and not default
-if (inviteCode && inviteCode !== DEFAULT_INVITE_CODE) {
-    const inviter = usersDB.find(u => u.invitationCode === inviteCode);
-    if (inviter) {
-        newUser.invitedBy = inviter.email;
-        newUser.hasUsedInvite = true;
-        // Removed immediate 2000 bonus
-        inviter.referrals.push({
-            email: newUser.email,
-            date: new Date().toISOString(),
-            bonus: 0 // No immediate bonus
-        });
-    }
-}
+        if (inviteCode && inviteCode !== DEFAULT_INVITE_CODE) {
+            const inviter = usersDB.find(u => u.invitationCode === inviteCode);
+            if (inviter) {
+                newUser.invitedBy = inviter.email;
+                newUser.hasUsedInvite = true;
+                inviter.referrals.push({
+                    email: newUser.email,
+                    date: new Date().toISOString(),
+                    bonus: 0
+                });
+            }
+        }
         
         usersDB.push(newUser);
         localStorage.setItem('aab_users', JSON.stringify(usersDB));
         
-        sessionStorage.setItem('aab_currentUser', JSON.stringify(newUser));
+        localStorage.setItem('aab_currentUser', JSON.stringify(newUser)); // Changed to localStorage
         window.location.href = 'index.html';
-  });
+    });
 }
 
 // Logout functionality
@@ -175,8 +174,8 @@ function setupLogout() {
         if (btn) {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
-                sessionStorage.removeItem('aab_currentUser');
-                sessionStorage.removeItem('aab_currentAdmin');
+                localStorage.removeItem('aab_currentUser'); // Changed to localStorage
+                localStorage.removeItem('aab_currentAdmin'); // Changed to localStorage
                 window.location.href = 'login.html';
             });
         }
@@ -185,4 +184,3 @@ function setupLogout() {
 
 // Initialize logout buttons when DOM is loaded
 document.addEventListener('DOMContentLoaded', setupLogout);
-

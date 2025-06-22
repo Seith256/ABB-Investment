@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const userFromDB = usersDB.find(u => u.id === currentUser.id);
         if (userFromDB) {
             currentUser = userFromDB;
-            sessionStorage.setItem('aab_currentUser', JSON.stringify(currentUser));
+            localStorage.setItem('aab_currentUser', JSON.stringify(currentUser));
             processVIPProfit(currentUser);
         }
         // Update UI with user data
@@ -154,7 +154,7 @@ for (let i = 0; i < prices.length; i++) {
 
       // Update current user session
       currentUser = usersDB[userIndex];
-      sessionStorage.setItem('aab_currentUser', JSON.stringify(currentUser));
+      localStorage.setItem('aab_currentUser', JSON.stringify(currentUser));
       alert(`VIP ${vipLevel} purchase request submitted for approval.`);
       document.getElementById('vip-modal').classList.add('modal-hidden');
 
@@ -212,7 +212,7 @@ if (document.getElementById('recharge-form')) {
             localStorage.setItem('aab_users', JSON.stringify(usersDB));
             // Update current user session
             currentUser = usersDB[userIndex];
-            sessionStorage.setItem('aab_currentUser', JSON.stringify(currentUser));
+            localStorage.setItem('aab_currentUser', JSON.stringify(currentUser));
             alert('Recharge request submitted for approval. You will be notified once approved.');
             document.getElementById('recharge-modal').classList.add('modal-hidden');
             this.reset();
@@ -267,7 +267,7 @@ if (document.getElementById('recharge-form')) {
                     
                     // Update current user session
                     currentUser = usersDB[userIndex];
-                    sessionStorage.setItem('aab_currentUser', JSON.stringify(currentUser));
+                    localStorage.setItem('aab_currentUser', JSON.stringify(currentUser));
                     
                     alert('Withdrawal request submitted for approval. You will be notified once processed.');
                     document.getElementById('withdraw-modal').classList.add('modal-hidden');
@@ -324,7 +324,7 @@ if (document.getElementById('recharge-form')) {
                     
                     // Update current user session
                     currentUser = usersDB[userIndex];
-                    sessionStorage.setItem('aab_currentUser', JSON.stringify(currentUser));
+                    localStorage.setItem('aab_currentUser', JSON.stringify(currentUser));
                     
                     alert('Profile updated successfully');
                     document.getElementById('edit-modal').classList.add('modal-hidden');
@@ -346,7 +346,7 @@ if (document.getElementById('recharge-form')) {
                 if (userIndex !== -1) {
                     usersDB.splice(userIndex, 1);
                     localStorage.setItem('aab_users', JSON.stringify(usersDB));
-                    sessionStorage.removeItem('aab_currentUser');
+                    localStorage.removeItem('aab_currentUser');
                     window.location.href = 'login.html';
                 }
             });
@@ -458,7 +458,7 @@ function processVIPProfit(user) {
                     
                     // Update current user session
                     currentUser = usersDB[userIndex];
-                    sessionStorage.setItem('aab_currentUser', JSON.stringify(currentUser));
+                    localStorage.setItem('aab_currentUser', JSON.stringify(currentUser));
                     
                     // Show completion message
                     if (document.getElementById('user-balance')) {
@@ -494,7 +494,7 @@ function processVIPProfit(user) {
                 
                 // Update current user session
                 currentUser = usersDB[userIndex];
-                sessionStorage.setItem('aab_currentUser', JSON.stringify(currentUser));
+                localStorage.setItem('aab_currentUser', JSON.stringify(currentUser));
                 
                 // Update UI if on index page
                 if (document.getElementById('user-balance')) {
@@ -536,7 +536,7 @@ document.getElementById('confirm-vip-btn').addEventListener('click', function() 
 
         // Update current user session
         currentUser = usersDB[userIndex];
-        sessionStorage.setItem('aab_currentUser', JSON.stringify(currentUser));
+        localStorage.setItem('aab_currentUser', JSON.stringify(currentUser));
         alert(`VIP ${vipLevel} purchase request submitted for approval.`);
         document.getElementById('vip-modal').classList.add('modal-hidden');
 

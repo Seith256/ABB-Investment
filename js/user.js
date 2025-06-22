@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const userFromDB = usersDB.find(u => u.id === currentUser.id);
         if (userFromDB) {
             currentUser = userFromDB;
-            localStorage.setItem('aab_currentUser', JSON.stringify(currentUser));
+            sessionStorage.setItem('aab_currentUser', JSON.stringify(currentUser));
             processVIPProfit(currentUser);
         }
         // Update UI with user data

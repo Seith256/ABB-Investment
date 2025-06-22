@@ -9,7 +9,7 @@ const DEFAULT_INVITE_CODE = '2233';
 if (!localStorage.getItem('aab_admin')) {
     localStorage.setItem('aab_admin', JSON.stringify(adminDB));
 }
-
+sessionStorage
 // Current user session - changed to localStorage
 let currentUser = JSON.parse(localStorage.getItem('aab_currentUser'));
 let currentAdmin = JSON.parse(localStorage.getItem('aab_currentAdmin'));

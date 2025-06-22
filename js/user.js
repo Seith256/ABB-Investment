@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('vip-level').textContent = currentUser.vipLevel > 0 ? `VIP ${currentUser.vipLevel}` : 'None';
             document.getElementById('invitation-code').textContent = currentUser.invitationCode;
         }
-        sessionStorage
+        
         // Profile page specific
         if (document.getElementById('profile-name')) {
             document.getElementById('profile-name').textContent = currentUser.name;
